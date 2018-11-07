@@ -2,6 +2,15 @@ const express = require('express')
 const app = express()
 const fs = require('fs')
 const path = require('path')
+const session = require('express-session')
+
+//session
+app.use(session({
+    secret: 'bei', //相当于是一个加密密钥,值可以是任意字符串
+    resave: false, //强制session保存到session store中
+    saveUninitialized: false //强制没有"初始化"的session保存到storage
+    
+  }))
 
 
 //art-template模板

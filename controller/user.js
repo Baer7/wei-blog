@@ -34,13 +34,22 @@ module.exports= {
     loginPost(req,res){
         const user = req.body
         
-        
         const sql = 'select * from users where username=? and password=?'
         conn.query(sql,[user.username,user.password],(err,result)=>{
             if (err) return res.status(501).send({ msg: '用户登录失败', status:501 })  
-            if(result.length!==1) return res.status(501).send({ msg: '用户登录失败', status:501 })  
+            if(result.length!==1) return res.status(501).send({ msg: '用户登录失败', status:501 })
+            //设置session
+            req.session.user =result[0]
+            req.session.islogin = true
+            // console.log(result);
+            
+            
             res.send({status:200,msg:'登录成功'})
         })
         
+    },
+    logoutGet(req,res){
+        //清空session数据并跳转
+        req.session.destroy(()=>res.redirect('/'))
     }
 }

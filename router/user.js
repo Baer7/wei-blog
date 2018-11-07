@@ -16,6 +16,7 @@ router.get('/login',User.loginGet)
 router.post('/register',User.registerPost)
 //登录处理
 router.post('/login',User.loginPost)
-
+//注销处理
+router.get('/logout',User.logoutGet)
 
 module.exports =router
