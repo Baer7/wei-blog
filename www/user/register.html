@@ -54,8 +54,10 @@
         data:$("#form").serialize(),
         dataType:'json',
         success:function(res){
-         if( res.status==!200){
-          return alert(res.msg)
+          console.log(res);
+          
+         if( res.status!==200){
+          return alert('用户名存在')
          }
           location.href='/login'
         }
